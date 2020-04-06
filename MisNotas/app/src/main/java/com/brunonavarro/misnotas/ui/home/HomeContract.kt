@@ -10,7 +10,7 @@ interface HomeContract {
 
         fun add(nota: Nota)
         fun update(nota: Nota)
-        fun remove(nota: Nota)
+        fun remove(nota: Nota?)
 
         fun removeFail()
         fun onShowError(resMsg: Int)
@@ -22,7 +22,7 @@ interface HomeContract {
         fun onResume()
         fun onDestroy()
 
-        fun remove(nota: Nota)
+        fun remove(nota: Nota?)
         fun onEventListener(event: HomeEvent)
     }
 }

@@ -15,4 +15,6 @@
     <string name="addnotas_error_max_value">La descripcion no debe ser mayor a 200 caracteres</string>
     <string name="addnotas_success">Nota añadida</string>
     <string name="addnotas_action">OK</string>
+    <string name="remove_title_nota_dialog">Eliminar Nota</string>
+    <string name="mensaje_remove_nota_dialog">¿Desea eliminar la nota?</string>
 </resources>

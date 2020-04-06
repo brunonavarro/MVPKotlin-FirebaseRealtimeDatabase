@@ -17,7 +17,7 @@ class HomeEvent() {
         return nota!!
     }
 
-    fun setNotas(nota: Nota) {
+    fun setNotas(nota: Nota?) {
         this.nota = nota;
     }
 

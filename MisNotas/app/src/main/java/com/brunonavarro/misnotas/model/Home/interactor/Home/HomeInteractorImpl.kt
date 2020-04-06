@@ -40,23 +40,21 @@ class HomeInteractorImpl: HomeInteractor {
         mDatabase?.unsubscribeToNotas()
     }
 
-    override fun removeNotas(nota: Nota) {
-        mDatabase?.removeNotas(nota, object : BasicErrorEventCallback {
+    override fun removeNotas(nota: Nota?) {
+        mDatabase?.removeNotas(nota!!, object : BasicErrorEventCallback {
             override fun onSuccess() {
-                post(HomeEvent().SUCCESS_REMOVE)
-                System.out.println("INTERACTOR - RemoveNota: "+HomeEvent().SUCCESS_REMOVE)
+                post(HomeEvent().SUCCESS_REMOVE,0)
             }
 
             override fun onError(typeEvent: Int, resMsg: Int) {
                 post(typeEvent, resMsg)
-                System.out.println("INTERACTOR - RemoveNotaError: "+HomeEvent().ERROR_TO_REMOVE)
             }
         })
     }
 
-    private fun post(typeEvent: Int) {
+    /*private fun post(typeEvent: Int) {
         post(null, typeEvent, 0)
-    }
+    }*/
 
     private fun post(typeEvent: Int, resMsg: Int) {
         post(null, typeEvent, resMsg)
@@ -68,7 +66,7 @@ class HomeInteractorImpl: HomeInteractor {
 
     private fun post(nota: Nota?, typeEvent: Int, resMsg: Int) {
         val event = HomeEvent()
-        event.setNotas(nota!!)
+        event.setNotas(nota)
         event.setTypeEvent(typeEvent)
         event.setResMsg(resMsg)
         EventBus.getDefault().post(event)

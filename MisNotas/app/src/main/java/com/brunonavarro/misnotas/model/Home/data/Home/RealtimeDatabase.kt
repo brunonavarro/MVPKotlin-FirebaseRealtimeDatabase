@@ -78,21 +78,18 @@ class RealtimeDatabase {
                 override fun onComplete(p0: DatabaseError?, p1: DatabaseReference) {
                     if (p0==null){
                         callback.onSuccess()
-                        System.out.println("REALTIMEDATABASE - REMOVE: "+festividades.id)
                     }else {
-                        when (p0!!.getCode()) {
+                        when (p0.getCode()) {
                             DatabaseError.PERMISSION_DENIED -> {callback.onError(
                                     HomeEvent().ERROR_TO_REMOVE,
                                     R.string.notas_error_to_remove
                                 )
-                                System.out.println("REALTIMEDATABASE - REMOVE-ERROR: "+HomeEvent().ERROR_TO_REMOVE)
                             }
                             else -> {
                                 callback.onError(
                                     HomeEvent().ERROR_SERVER,
                                     R.string.notas_error_server
                                 )
-                                System.out.println("REALTIMEDATABASE - REMOVE-ERROR: "+HomeEvent().ERROR_SERVER)
                             }
                         }
 

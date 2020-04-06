@@ -35,9 +35,9 @@ class HomePresenter(mVista: HomeContract.View) :HomeContract.Presenter{
         mView = null
     }
 
-    override fun remove(nota: Nota) {
+    override fun remove(nota: Nota?) {
         if (setProgress()) {
-            mInteractor?.removeNotas(nota)
+            mInteractor?.removeNotas(nota!!)
         }
     }
 
@@ -57,19 +57,14 @@ class HomePresenter(mVista: HomeContract.View) :HomeContract.Presenter{
             when (event.getTypeEvent()) {
                 HomeEvent().SUCCESS_ADD -> {
                     mView?.add(event.getNotas())
-                    System.out.println("PRESENTER ON EVENT LISTENER - Success add: "+HomeEvent().SUCCESS_ADD)
                 }
                 HomeEvent().SUCCESS_UPDATE -> {mView?.update(event.getNotas())
-                    System.out.println("PRESENTER ON EVENT LISTENER - Success update: "+HomeEvent().SUCCESS_UPDATE)
                 }
                 HomeEvent().SUCCESS_REMOVE -> {mView?.remove(event.getNotas())
-                    System.out.println("PRESENTER ON EVENT LISTENER - Success remove: "+HomeEvent().SUCCESS_REMOVE)
                 }
                 HomeEvent().ERROR_SERVER -> {mView?.onShowError(event.getResMsg())
-                    System.out.println("PRESENTER ON EVENT LISTENER - Error Server: "+HomeEvent().ERROR_SERVER)
                 }
                 HomeEvent().ERROR_TO_REMOVE -> {mView?.removeFail()
-                    System.out.println("PRESENTER ON EVENT LISTENER - ERROR REMOVE: "+HomeEvent().ERROR_TO_REMOVE)
                 }
             }
         }

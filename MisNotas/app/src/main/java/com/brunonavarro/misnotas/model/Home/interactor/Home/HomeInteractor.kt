@@ -6,5 +6,5 @@ interface HomeInteractor {
     fun subscribeToNotas()
     fun unsubscribeToNotas()
 
-    fun removeNotas(nota: Nota)
+    fun removeNotas(nota: Nota?)
 }

@@ -1,7 +1,11 @@
 package com.brunonavarro.misnotas.ui.home
 
 import android.app.AlertDialog
+import android.content.Context
+import android.content.DialogInterface
 import android.os.Bundle
+import android.os.Vibrator
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -65,12 +69,29 @@ class HomeFragment : Fragment(),HomeContract.View, OnItemClickListener {
         AddNotaFragment().show(fragmentManager,"Titulo")
     }
 
-    override fun onItemClick(nota: Nota) {
-        Snackbar.make(contentMain!!,"CLICK: "+nota.titulo,Snackbar.LENGTH_LONG).show()
+    override fun onItemClick(nota: Nota?) {
+        Snackbar.make(contentMain!!,"CLICK: "+nota?.titulo,Snackbar.LENGTH_LONG).show()
     }
 
-    override fun onLongItemClick(nota: Nota) {
-        Snackbar.make(contentMain!!,"LONG CLICK: "+nota.titulo,Snackbar.LENGTH_LONG).show()
+    override fun onLongItemClick(nota: Nota?) {
+
+        var vibrador:Vibrator= activity?.getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
+        if (vibrador!=null){
+            vibrador.vibrate(60)
+        }
+
+        AlertDialog.Builder(context)
+            .setTitle(R.string.remove_title_nota_dialog)
+            .setMessage(R.string.mensaje_remove_nota_dialog)
+            .setPositiveButton("Si",object: DialogInterface.OnClickListener{
+                override fun onClick(dialog: DialogInterface?, which: Int) {
+                    try {
+                        homePresenter?.remove(nota)
+                    }catch (e:Exception){
+                        Log.e("ERROR-APP",e.message+e.cause)
+                    }
+                }
+            }).setNegativeButton("No",null).show()
     }
 
     override fun showProgress() {
@@ -89,8 +110,8 @@ class HomeFragment : Fragment(),HomeContract.View, OnItemClickListener {
         notaAdapter?.update(nota)
     }
 
-    override fun remove(nota: Nota) {
-        notaAdapter?.remove(nota)
+    override fun remove(nota: Nota?) {
+        notaAdapter?.remove(nota!!)
     }
 
     override fun removeFail() {
