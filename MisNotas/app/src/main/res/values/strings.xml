@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">MisNotas</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="notas_error_to_remove">No se pudo eliminar la Nota</string>
+    <string name="notas_error_permiso_denegado">Permiso denegado</string>
+    <string name="notas_error_server">Error con el servidor</string>
+    <string name="item_notas_titulo">%s</string>
+    <string name="item_notas_descripcion">%s</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="notas_error_max_value">El maximo de valores ha excedido</string>
+    <string name="addnotas_error_max_value">La descripcion no debe ser mayor a 200 caracteres</string>
+    <string name="addnotas_success">Nota añadida</string>
+    <string name="addnotas_action">OK</string>
+</resources>
